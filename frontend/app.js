@@ -1,4 +1,4 @@
-const API_URL = "https://proyecto-final-backend-ew7a.onrender.com/products";
+const API_URL = "https://proyecto-final-backend-ew7a.onrender.com";
 
 const authSection = document.getElementById("authSection");
 const dashboardSection = document.getElementById("dashboardSection");
@@ -11,14 +11,29 @@ const createBtn = document.getElementById("createBtn");
 
 const productsContainer = document.getElementById("productsContainer");
 
-let token = "";
+let token = localStorage.getItem("token") || "";
+
 let editProductId = null;
+
+// ======================
+// SI YA HAY TOKEN
+// ======================
+
+if (token) {
+
+  authSection.classList.add("hidden");
+
+  dashboardSection.classList.remove("hidden");
+
+  getProducts();
+}
 
 // ======================
 // REGISTRO
 // ======================
 
 registerBtn.addEventListener("click", async () => {
+
   try {
 
     const name = document.getElementById("name").value;
@@ -27,11 +42,14 @@ registerBtn.addEventListener("click", async () => {
 
     const password = document.getElementById("password").value;
 
-    const response = await fetch("https://proyecto-final-backend-ew7a.onrender.com/users", {
+    const response = await fetch(`${API_URL}/users`, {
+
       method: "POST",
+
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
         name,
         email,
@@ -47,7 +65,7 @@ registerBtn.addEventListener("click", async () => {
 
     } else {
 
-      alert(data.mensaje || "Error al registrar");
+      alert(data.mensaje);
     }
 
   } catch (error) {
@@ -68,11 +86,14 @@ loginBtn.addEventListener("click", async () => {
 
     const password = document.getElementById("password").value;
 
-    const response = await fetch("https://proyecto-final-backend-ew7a.onrender.com/login", {
+    const response = await fetch(`${API_URL}/login`, {
+
       method: "POST",
+
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
         email,
         password,
@@ -85,6 +106,8 @@ loginBtn.addEventListener("click", async () => {
 
       token = data.token;
 
+      localStorage.setItem("token", token);
+
       alert("Login exitoso");
 
       authSection.classList.add("hidden");
@@ -95,7 +118,7 @@ loginBtn.addEventListener("click", async () => {
 
     } else {
 
-      alert(data.mensaje || "Credenciales incorrectas");
+      alert(data.mensaje);
     }
 
   } catch (error) {
@@ -110,6 +133,8 @@ loginBtn.addEventListener("click", async () => {
 
 logoutBtn.addEventListener("click", () => {
 
+  localStorage.removeItem("token");
+
   token = "";
 
   authSection.classList.remove("hidden");
@@ -118,7 +143,7 @@ logoutBtn.addEventListener("click", () => {
 });
 
 // ======================
-// CREAR / EDITAR PRODUCTO
+// CREAR PRODUCTO
 // ======================
 
 createBtn.addEventListener("click", async () => {
@@ -143,16 +168,19 @@ createBtn.addEventListener("click", async () => {
       stock,
     };
 
-    // EDITAR PRODUCTO
+    // EDITAR
 
     if (editProductId) {
 
-      const response = await fetch(`${API_URL}/${editProductId}`, {
+      const response = await fetch(`${API_URL}/products/${editProductId}`, {
+
         method: "PUT",
+
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+
         body: JSON.stringify(productData),
       });
 
@@ -177,14 +205,17 @@ createBtn.addEventListener("click", async () => {
 
     } else {
 
-      // CREAR PRODUCTO
+      // CREAR
 
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}/products`, {
+
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+
         body: JSON.stringify(productData),
       });
 
@@ -218,7 +249,7 @@ async function getProducts() {
 
   try {
 
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}/products`);
 
     const products = await response.json();
 
@@ -227,7 +258,7 @@ async function getProducts() {
     products.forEach((product) => {
 
       productsContainer.innerHTML += `
-      
+
         <div class="product">
 
           <div class="product-info">
@@ -284,12 +315,12 @@ async function getProducts() {
 
 async function deleteProduct(id) {
 
-  if (!confirm("¿Eliminar producto?")) return;
-
   try {
 
-    const response = await fetch(`${API_URL}/${id}`, {
+    const response = await fetch(`${API_URL}/products/${id}`, {
+
       method: "DELETE",
+
       headers: {
         Authorization: `Bearer ${token}`,
       },
