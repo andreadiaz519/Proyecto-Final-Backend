@@ -74,6 +74,10 @@ http://localhost:3000
 
 - Postman
 
+## API deploy
+ https://proyecto-final-backend-ew7a.onrender.com
+ 
+
 ## Autor
 
 Andrea Diaz Santamaria
