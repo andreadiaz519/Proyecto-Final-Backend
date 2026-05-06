@@ -14,9 +14,7 @@ const productsContainer = document.getElementById("productsContainer");
 let token = "";
 let editProductId = null;
 
-// =========================
-// REGISTRO
-// =========================
+//Registro
 
 registerBtn.addEventListener("click", async () => {
 
@@ -44,7 +42,7 @@ registerBtn.addEventListener("click", async () => {
 
     if (response.ok) {
 
-      alert("✅ Usuario registrado");
+      alert("Usuario registrado");
 
     } else {
 
@@ -57,9 +55,7 @@ registerBtn.addEventListener("click", async () => {
   }
 });
 
-// =========================
-// LOGIN
-// =========================
+//Login
 
 loginBtn.addEventListener("click", async () => {
 
@@ -86,7 +82,7 @@ loginBtn.addEventListener("click", async () => {
 
       token = data.token;
 
-      alert("✅ Login exitoso");
+      alert("Login exitoso");
 
       authSection.classList.add("hidden");
 
@@ -105,9 +101,7 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-// =========================
-// LOGOUT
-// =========================
+//Logout
 
 logoutBtn.addEventListener("click", () => {
 
@@ -118,9 +112,7 @@ logoutBtn.addEventListener("click", () => {
   dashboardSection.classList.add("hidden");
 });
 
-// =========================
-// CREAR / EDITAR
-// =========================
+//Crear / Editar
 
 createBtn.addEventListener("click", async () => {
 
@@ -161,7 +153,7 @@ createBtn.addEventListener("click", async () => {
 
       if (response.ok) {
 
-        alert("✅ Producto actualizado");
+        alert("Producto actualizado");
 
         editProductId = null;
 
@@ -193,7 +185,7 @@ createBtn.addEventListener("click", async () => {
 
       if (response.ok) {
 
-        alert("✅ Producto creado");
+        alert("Producto creado");
 
         clearInputs();
 
@@ -211,9 +203,7 @@ createBtn.addEventListener("click", async () => {
   }
 });
 
-// =========================
-// OBTENER PRODUCTOS
-// =========================
+//Obtener productos
 
 async function getProducts() {
 
@@ -279,9 +269,7 @@ async function getProducts() {
   }
 }
 
-// =========================
-// ELIMINAR
-// =========================
+// eliminar
 
 async function deleteProduct(id) {
 
@@ -315,9 +303,7 @@ async function deleteProduct(id) {
   }
 }
 
-// =========================
-// EDITAR
-// =========================
+//Editar
 
 function editProduct(id, nombre, marca, precio, categoria, stock) {
 
@@ -341,9 +327,7 @@ function editProduct(id, nombre, marca, precio, categoria, stock) {
   });
 }
 
-// =========================
-// LIMPIAR
-// =========================
+//limpiar
 
 function clearInputs() {
 

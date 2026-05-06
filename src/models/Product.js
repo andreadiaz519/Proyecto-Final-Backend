@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     categoria: {
-      type: String, // labial, base, sombras, etc
+      type: String, 
       required: true,
     },
     stock: {

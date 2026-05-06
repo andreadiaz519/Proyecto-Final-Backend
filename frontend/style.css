@@ -13,17 +13,13 @@ body{
   color:#333;
 }
 
-/* =========================
-   HIDDEN
-========================= */
+/* Hidden */
 
 .hidden{
   display:none !important;
 }
 
-/* =========================
-   AUTH
-========================= */
+/* Auth */
 
 .auth-section{
   width:100%;
@@ -93,16 +89,14 @@ body{
   transform:translateY(-3px);
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+/* dashboard */
 
 .dashboard{
   width:100%;
   min-height:100vh;
 }
 
-/* NAVBAR */
+/* Navbar */
 
 .navbar{
   width:100%;
@@ -128,7 +122,7 @@ body{
   font-weight:600;
 }
 
-/* CONTAINER */
+/* Contenedor */
 
 .container{
   width:90%;
@@ -172,7 +166,7 @@ body{
   border:2px solid #e91e63;
 }
 
-/* CREATE BTN */
+/* btn */
 
 #createBtn{
   margin-top:20px;

@@ -7,7 +7,7 @@ export const createProduct = async (req, res) => {
     const savedProduct = await product.save();
 
     res.status(200).json({
-      mensaje: "Producto creado 👜",
+      mensaje: "Producto creado",
       data: savedProduct,
     });
   } catch (error) {
@@ -65,7 +65,7 @@ export const updateProduct = async (req, res) => {
     }
 
     res.status(200).json({
-      mensaje: "Producto actualizado ✨",
+      mensaje: "Producto actualizado",
       data: productUpdated,
     });
   } catch (error) {
@@ -87,7 +87,7 @@ export const deleteProduct = async (req, res) => {
     }
 
     res.status(200).json({
-      mensaje: "Producto eliminado 🗑️",
+      mensaje: "Producto eliminado",
       data: deletedProduct,
     });
   } catch (error) {

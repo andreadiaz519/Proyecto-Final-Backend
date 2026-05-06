@@ -2,15 +2,13 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// ======================
-// REGISTRO
-// ======================
+// registro
 
 export const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // VALIDAR CAMPOS
+    
     if (!name || !email || !password) {
       return res.status(400).json({
         mensaje: "Todos los campos son obligatorios",
@@ -41,7 +39,7 @@ export const createUser = async (req, res) => {
     const savedUser = await newUser.save();
 
     res.status(201).json({
-      mensaje: "Usuario creado correctamente ✅",
+      mensaje: "Usuario creado correctamente",
       data: savedUser,
     });
   } catch (error) {
@@ -52,22 +50,20 @@ export const createUser = async (req, res) => {
   }
 };
 
-// ======================
-// LOGIN
-// ======================
+// login
 
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // VALIDAR CAMPOS
+    
     if (!email || !password) {
       return res.status(400).json({
         mensaje: "Todos los campos son obligatorios",
       });
     }
 
-    // BUSCAR USUARIO
+    
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -76,7 +72,7 @@ export const loginUser = async (req, res) => {
       });
     }
 
-    // COMPARAR PASSWORD
+    
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -93,7 +89,7 @@ export const loginUser = async (req, res) => {
     );
 
     res.status(200).json({
-      mensaje: "Login exitoso 🔥",
+      mensaje: "Login exitoso",
       token,
     });
   } catch (error) {
