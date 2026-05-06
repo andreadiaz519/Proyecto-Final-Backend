@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/products";
+const API_URL = "https://proyecto-final-backend-ew7a.onrender.com/products";
 
 const authSection = document.getElementById("authSection");
 const dashboardSection = document.getElementById("dashboardSection");
@@ -14,10 +14,11 @@ const productsContainer = document.getElementById("productsContainer");
 let token = "";
 let editProductId = null;
 
-//Registro
+// ======================
+// REGISTRO
+// ======================
 
 registerBtn.addEventListener("click", async () => {
-
   try {
 
     const name = document.getElementById("name").value;
@@ -26,23 +27,23 @@ registerBtn.addEventListener("click", async () => {
 
     const password = document.getElementById("password").value;
 
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch("https://proyecto-final-backend-ew7a.onrender.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-    body: JSON.stringify({
-    name,
-    email,
-    password,
-}),
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
     });
 
     const data = await response.json();
 
     if (response.ok) {
 
-      alert("Usuario registrado");
+      alert("Usuario registrado correctamente");
 
     } else {
 
@@ -55,7 +56,9 @@ registerBtn.addEventListener("click", async () => {
   }
 });
 
-//Login
+// ======================
+// LOGIN
+// ======================
 
 loginBtn.addEventListener("click", async () => {
 
@@ -65,7 +68,7 @@ loginBtn.addEventListener("click", async () => {
 
     const password = document.getElementById("password").value;
 
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch("https://proyecto-final-backend-ew7a.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +104,9 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-//Logout
+// ======================
+// LOGOUT
+// ======================
 
 logoutBtn.addEventListener("click", () => {
 
@@ -112,7 +117,9 @@ logoutBtn.addEventListener("click", () => {
   dashboardSection.classList.add("hidden");
 });
 
-//Crear / Editar
+// ======================
+// CREAR / EDITAR PRODUCTO
+// ======================
 
 createBtn.addEventListener("click", async () => {
 
@@ -136,7 +143,7 @@ createBtn.addEventListener("click", async () => {
       stock,
     };
 
-    // EDITAR
+    // EDITAR PRODUCTO
 
     if (editProductId) {
 
@@ -170,7 +177,7 @@ createBtn.addEventListener("click", async () => {
 
     } else {
 
-      // CREAR
+      // CREAR PRODUCTO
 
       const response = await fetch(API_URL, {
         method: "POST",
@@ -203,7 +210,9 @@ createBtn.addEventListener("click", async () => {
   }
 });
 
-//Obtener productos
+// ======================
+// OBTENER PRODUCTOS
+// ======================
 
 async function getProducts() {
 
@@ -269,7 +278,9 @@ async function getProducts() {
   }
 }
 
-// eliminar
+// ======================
+// ELIMINAR PRODUCTO
+// ======================
 
 async function deleteProduct(id) {
 
@@ -288,7 +299,7 @@ async function deleteProduct(id) {
 
     if (response.ok) {
 
-      alert("🗑 Producto eliminado");
+      alert("Producto eliminado");
 
       getProducts();
 
@@ -303,7 +314,9 @@ async function deleteProduct(id) {
   }
 }
 
-//Editar
+// ======================
+// EDITAR PRODUCTO
+// ======================
 
 function editProduct(id, nombre, marca, precio, categoria, stock) {
 
@@ -327,7 +340,9 @@ function editProduct(id, nombre, marca, precio, categoria, stock) {
   });
 }
 
-//limpiar
+// ======================
+// LIMPIAR INPUTS
+// ======================
 
 function clearInputs() {
 
