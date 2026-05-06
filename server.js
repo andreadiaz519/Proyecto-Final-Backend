@@ -4,39 +4,70 @@ import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 
 import connectDB from "./src/config/db.js";
+
 import userRoutes from "./src/routes/userRoutes.js";
 import productRoutes from "./src/routes/productRoutes.js";
 
+// ======================
+// CONFIG
+// ======================
+
 dotenv.config();
 
-// 🔹 crear app
+// ======================
+// APP
+// ======================
+
 const app = express();
 
-// 🔹 conectar DB
+// ======================
+// DATABASE
+// ======================
+
 connectDB();
 
-// 🔹 rate limit
+// ======================
+// RATE LIMIT
+// ======================
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: "Demasiadas peticiones, intenta más tarde 🚫",
 });
 
-// 🔹 middlewares
+// ======================
+// MIDDLEWARES
+// ======================
+
 app.use(cors());
+
 app.use(express.json());
+
+app.use(express.static("frontend"));
+
 app.use(limiter);
 
-// 🔹 rutas
+// ======================
+// ROUTES
+// ======================
+
 app.use(userRoutes);
+
 app.use(productRoutes);
 
-// 🔹 ruta principal
+// ======================
+// HOME ROUTE
+// ======================
+
 app.get("/", (req, res) => {
   res.send("API de maquillaje funcionando 💄");
 });
 
-// 🔹 servidor
+// ======================
+// SERVER
+// ======================
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

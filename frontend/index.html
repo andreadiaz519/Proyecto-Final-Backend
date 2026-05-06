@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Makeup Store Andrea Diaz 💄</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+
+  <!-- LOGIN / REGISTRO -->
+
+  <section id="authSection" class="auth-section">
+
+    <div class="auth-card">
+
+      <h1>💄 Makeup Store Andrea </h1>
+
+      <p class="subtitle">
+        Plataforma de maquillaje profesional
+      </p>
+
+      <input 
+        type="text" 
+        id="name" 
+        placeholder="Nombre"
+      />
+
+      <input 
+        type="email" 
+        id="email" 
+        placeholder="Correo electrónico"
+      />
+
+      <input 
+        type="password" 
+        id="password" 
+        placeholder="Contraseña"
+      />
+
+      <div class="auth-buttons">
+
+        <button id="registerBtn">
+          Registrarse
+        </button>
+
+        <button id="loginBtn">
+          Iniciar sesión
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+
+  <section id="dashboardSection" class="dashboard hidden">
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+      <h2>💄 Makeup Store Andrea</h2>
+
+      <button id="logoutBtn">
+        Cerrar sesión
+      </button>
+
+    </header>
+
+    <!-- CONTENIDO -->
+
+    <main class="container">
+
+      <!-- FORMULARIO -->
+
+      <div class="card">
+
+        <h2>Agregar producto</h2>
+
+        <div class="grid">
+
+          <input 
+            type="text" 
+            id="nombre" 
+            placeholder="Nombre producto"
+          />
+
+          <input 
+            type="text" 
+            id="marca" 
+            placeholder="Marca"
+          />
+
+          <input 
+            type="number" 
+            id="precio" 
+            placeholder="Precio"
+          />
+
+          <input 
+            type="text" 
+            id="categoria" 
+            placeholder="Categoría"
+          />
+
+          <input 
+            type="number" 
+            id="stock" 
+            placeholder="Stock"
+          />
+
+        </div>
+
+        <button id="createBtn">
+          Crear producto
+        </button>
+
+      </div>
+
+      <!-- PRODUCTOS -->
+
+      <div class="card">
+
+        <h2>Productos</h2>
+
+        <div 
+          id="productsContainer" 
+          class="products-grid"
+        ></div>
+
+      </div>
+
+    </main>
+
+  </section>
+
+</body>
+</html>
